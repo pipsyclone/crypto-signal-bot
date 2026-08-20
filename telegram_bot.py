@@ -1,8 +1,11 @@
 import sys
 import time
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import requests
-from config import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
+from config import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, TIMEZONE
+
+ZONE = ZoneInfo(TIMEZONE)
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -161,8 +164,8 @@ def format_combined_message(entries):
         )
         lines.append("─" * 15)
 
-    waktu = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    lines.append(f"🕒 Update: {waktu} WIB")
+    waktu = datetime.now(ZONE).strftime("%d/%m/%Y %H:%M:%S")
+    lines.append(f"🕒 Update: {waktu} (WIB)")
     lines.append("⚠️ <i>Bukan financial advice. DYOR!</i>")
 
     return "\n".join(lines).strip()

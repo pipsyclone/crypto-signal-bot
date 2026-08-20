@@ -10,3 +10,6 @@ TIMEFRAME = "1h"
 
 # Interval cek sinyal (menit)
 CHECK_INTERVAL = 60
+
+# Zona waktu untuk timestamp pesan
+TIMEZONE = "Asia/Jakarta"
